@@ -24,5 +24,5 @@ def geocode_locations(df, cityCol='city', countryCol='country', cache_path='../c
     updatedCache = merged.dropna(subset=['Latitude', 'Longitude'])
     updatedCache.to_csv(cache_path, index=False)
 
-    df = df.merge(updatedCache, on=[cityCol, countryCol, how='left'])
+    df = df.merge(updatedCache, on=[cityCol, countryCol], how='left')
     return df
