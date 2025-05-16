@@ -2,7 +2,7 @@ import pandas as pd
 from geopy.extra.rate_limiter import RateLimiter
 from geopy.geocoders import Nominatim
 
-def geocode_locations(df, cityCol='city', countryCol='country', cache_path='../cache/geocodedCache.csv'):
+def geocode_locations(df, cityCol='City', countryCol='Country', cache_path='../cache/geocodedCache.csv'):
     geolocator = Nominatim(user_agent="airQualityMapper")
     geocode = RateLimiter(geolocator.geocode, min_delay_seconds=1)
 
