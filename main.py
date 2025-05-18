@@ -5,7 +5,7 @@ from modules.network import autoencoderModel, clusterData
 from modules.mapPlot import plotClusters
 
 # Load data
-df = pd.read_csv("data\global air pollution dataset.csv")
+df = pd.read_csv(r"data\testFile.csv")
 df = geocodeLocations(df)
 
 # Preprocess
