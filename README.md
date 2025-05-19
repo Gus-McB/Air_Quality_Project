@@ -1,6 +1,6 @@
 # 🌍 Air Quality Mapping and Clustering Project
 
-This project analyzes global air pollution data and uses **clustering algorithms** to identify and visualize areas with the best and worst air quality based on geographical location.
+This project analyses global air pollution data and uses **clustering algorithms** to identify and visualize areas with the best and worst air quality based on geographical location.
 
 ---
 
@@ -35,5 +35,5 @@ This project analyzes global air pollution data and uses **clustering algorithms
 ## 📦 Installation
 
    ```bash
-   git clone https://github.com/yourusername/air-quality-clustering.git
+   git clone https://github.com/Gus-McB/air-quality-clustering.git
    cd air-quality-clustering
