@@ -5,7 +5,7 @@ def plotClusters(df, labels):
     colors = ['red', 'green', 'blue', 'purple', 'orange', 'darkred']
 
     for i, row in df.iterrows():
-        label = labels[i]
+        label = labels[df.index.get_loc(i)]
         color = colors[label % len(colors)] if label != -1 else 'gray'
         folium.CircleMarker(
             location=[row['Latitude'], row['Longitude']],
