@@ -17,5 +17,5 @@ def autoencoderModel(X, encoding_dim=2):
     return encoder.predict(X)
 
 def clusterData(encodedX):
-    dbscan = DBSCAN(eps=0.5, min_samples=5)
+    dbscan = DBSCAN(eps=0.3, min_samples=5)
     return dbscan.fit_predict(encodedX)

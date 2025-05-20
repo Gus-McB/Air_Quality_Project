@@ -29,7 +29,8 @@ def geocodeLocations(df, cityCol='City', countryCol='Country', cachePath=Path(".
         except Exception as e:
             print(f"Error geocoding {row[cityCol]}, {row[countryCol]}: {e}")
 
-    updatedCache = merged.dropna(subset=['Latitude', 'Longitude'])
+    updatedCache = pd.concat([cache, merged.dropna(subset=['Latitude', 'Longitude'])])
+    updatedCache = updatedCache.drop_duplicates(subset=[cityCol, countryCol])
     updatedCache.to_csv(cachePath, index=False)
     print(f"Saved {len(updatedCache)} geocoded entries to {cachePath}")
     print(f"Saved {len(updatedCache)} geocoded entries to {cachePath.resolve()}")

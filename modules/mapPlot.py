@@ -2,7 +2,7 @@ import folium
 
 def plotClusters(df, labels):
     m = folium.Map(location=[20,0], zoom_start=2)
-    colors = ['red', 'green', 'blue', 'purple', 'orange', 'darkred']
+    colors = ['green', 'yellow', 'orange', 'red', 'darkred']
 
     for i, row in df.iterrows():
         label = labels[df.index.get_loc(i)]
