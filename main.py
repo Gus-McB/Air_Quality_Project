@@ -1,20 +1,18 @@
 import pandas as pd
-from modules.geocode import geocodeLocations
+from modules.geocode import geocodeLocations, loadCachedData
 from modules.preprocess import preprocess
-from modules.network import autoencoderModel, clusterData
-from modules.mapPlot import plotClusters
+from modules.network import buildClassifier
+from modules.performance import performance  
 
-# Load data
 df = pd.read_csv(r"data\airQualityData.csv")
-df = geocodeLocations(df)
+df = loadCachedData(df)
 
-# Preprocess
-df, X = preprocess(df)
+df, X, y = preprocess(df)
 
-# Autoencode and Cluster
-encodedX = autoencoderModel(X)
-labels = clusterData(encodedX)
+model, label_encoder = buildClassifier(X, y)
 
-# Visualise
-mapped = plotClusters(df, labels)
-mapped.save('air_quality_map.html')
+y_pred_prob = model.predict(X)
+y_pred = label_encoder.inverse_transform(y_pred_prob.argmax(axis=1))
+
+df['PredictedAQICategory'] = y_pred
+performance(df, predictedCol='PredictedAQICategory', trueCol='AQI Category')

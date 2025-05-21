@@ -37,3 +37,12 @@ def geocodeLocations(df, cityCol='City', countryCol='Country', cachePath=Path(".
 
     df = df.merge(updatedCache, on=[cityCol, countryCol], how='left')
     return df
+
+def loadCachedData(df, cityCol='City', countryCol='Country', cachePath=Path("./cache/cachedData.csv")):
+    try:
+        cache = pd.read_csv(cachePath)
+    except FileNotFoundError:
+        raise FileNotFoundError(f"No cached data found at {cachePath}")
+
+    merged_df = df.merge(cache, on=[cityCol, countryCol], how='left')
+    return merged_df
