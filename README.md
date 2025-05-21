@@ -1,39 +1,27 @@
-# 🌍 Air Quality Mapping and Clustering Project
+# Air Quality Analysis and Prediction
 
-This project analyses global air pollution data and uses **clustering algorithms** to identify and visualize areas with the best and worst air quality based on geographical location.
+This project analyzes and visualizes air quality data to identify regions with poor air conditions and classify the severity of air pollution using a dense neural network classifier.
 
----
+## 📌 Features
 
-## 📌 Project Goals
+- Preprocessing of raw AQI data (CO, Ozone, NO₂, PM2.5)
+- Geolocation using city and country with caching
+- Data normalization using `StandardScaler`
+- Classification of AQI Category using a dense neural network
+- Confusion matrix and performance metrics
+- Interactive map output visualizing air quality by region
 
-- Clean and preprocess air pollution data.
-- Geocode each location using `City` and `Country` to obtain coordinates.
-- Use a clustering model (e.g., DBSCAN) to identify regions with similar pollution levels.
-- Plot the results on an interactive map to visualize air quality hotspots and safe zones.
+## 🧠 Model Overview
 
----
+The model is a **dense classification neural network** built with Keras:
+- Loss Function: `categorical_crossentropy`
+- Optimizer: `adam`
+- Evaluation: Accuracy on a held-out test set
+- Uses EarlyStopping to avoid overfitting
 
-## 📁 Dataset
+## 🛠️ Setup
 
-- **Source**: [Global Air Pollution Dataset on Kaggle](https://www.kaggle.com/datasets/hasibalmuzdadid/global-air-pollution-dataset)
-- **Contents**:
-  - Air pollution readings: PM2.5, PM10, NO2, SO2, CO, O3, etc.
-  - City, Country, and Air Quality Category (`Good`, `Poor`, `Hazardous`, etc.)
+1. **Install dependencies**:
 
----
-
-## 🧰 Tech Stack
-
-- **Python 3**
-- **Pandas** – Data handling
-- **Geopy** – Location geocoding
-- **scikit-learn** – DBSCAN clustering
-- **Folium** – Interactive map visualization
-
----
-
-## 📦 Installation
-
-   ```bash
-   git clone https://github.com/Gus-McB/air-quality-clustering.git
-   cd air-quality-clustering
+```bash
+pip install -r requirements.txt
