@@ -36,7 +36,7 @@ This project analyzes and visualizes air quality data across global locations. I
 ## 🔍 Workflow Overview
 
 1. **Load** and cache geolocation data (`city`, `country`)
-2. **Preprocess** data: drop NA, normalize pollutant AQI values
+2. **Preprocess** data: drop NA, normalise pollutant AQI values
 3. **Train** a neural network on AQI prediction (regression)
 4. **Evaluate** predictions with plots and regression metrics
 5. **Plot** results:
