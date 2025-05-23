@@ -15,6 +15,6 @@ def preprocess(df):
     df[features] = scaler.fit_transform(df[features])
 
     X = df[features]
-    y = df['AQI Category'] 
+    y = df['AQI Value']  # Use numerical AQI value for regression
 
     return df, X, y

@@ -1,18 +1,22 @@
 import pandas as pd
-from modules.geocode import geocodeLocations, loadCachedData
+from modules.geocode import loadCachedData
 from modules.preprocess import preprocess
-from modules.network import buildClassifier
-from modules.performance import performance  
+from modules.network import buildRegressor
+from modules.performance import performance  # Make sure this version is regression-compatible
 
-df = pd.read_csv(r"data\airQualityData.csv")
+# Load data
+df = pd.read_csv("data/airQualityData.csv")
 df = loadCachedData(df)
 
+# Preprocess
 df, X, y = preprocess(df)
 
-model, label_encoder = buildClassifier(X, y)
+# Train regression model
+model = buildRegressor(X, y)
 
-y_pred_prob = model.predict(X)
-y_pred = label_encoder.inverse_transform(y_pred_prob.argmax(axis=1))
+# Predict AQI values
+predictions = model.predict(X).flatten()  # Flatten to 1D if necessary
+df['Predicted AQI Value'] = predictions
 
-df['PredictedAQICategory'] = y_pred
-performance(df, predictedCol='PredictedAQICategory', trueCol='AQI Category')
+# Evaluate performance
+performance(df, predictedCol='Predicted AQI Value', trueCol='AQI Value')
