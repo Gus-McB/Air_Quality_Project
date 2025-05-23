@@ -12,7 +12,7 @@ def map_aqi_to_category(aqi):
     elif aqi <= 100:
         return "Moderate"
     elif aqi <= 150:
-        return "Unhealthy for Sensitive Groups"
+        return "Unhealthy for SG"
     elif aqi <= 200:
         return "Unhealthy"
     elif aqi <= 300:
@@ -62,7 +62,7 @@ def performance(df, predictedCol, trueCol='AQI Value'):
     df['TrueCategory'] = df[trueCol].apply(map_aqi_to_category)
     df['PredictedCategory'] = df[predictedCol].apply(map_aqi_to_category)
 
-    labels = ['Good', 'Moderate', 'Unhealthy for Sensitive Groups', 'Unhealthy', 'Very Unhealthy', 'Hazardous']
+    labels = ['Good', 'Moderate', 'Unhealthy for SG', 'Unhealthy', 'Very Unhealthy', 'Hazardous']
 
     cm = confusion_matrix(df['TrueCategory'], df['PredictedCategory'], labels=labels)
     disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=labels)
