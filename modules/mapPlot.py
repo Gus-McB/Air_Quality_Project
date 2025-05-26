@@ -18,7 +18,7 @@ def getAqiColour(aqi):
 def createAQIMap(df, aqi_col, title="AQI Map"):
     # Start the map centered around the mean lat/lon
     m = folium.Map(
-        location=[df['Latitude'].mean(), df['Longitude'].mean()],
+        location=[df['OrigLatitude'].mean(), df['OrigLongitude'].mean()],
         zoom_start=2,
         control_scale=True
     )
@@ -27,7 +27,7 @@ def createAQIMap(df, aqi_col, title="AQI Map"):
     for _, row in df.iterrows():
         color = getAqiColour(row[aqi_col])
         folium.CircleMarker(
-            location=(row['Latitude'], row['Longitude']),
+            location=(row['OrigLatitude'], row['OrigLongitude']),
             radius=6,
             color=color,
             fill=True,

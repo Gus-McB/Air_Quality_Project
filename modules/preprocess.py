@@ -10,11 +10,14 @@ def preprocess(df):
         'PM2.5 AQI Value', 'PM2.5 AQI Category'
     ])
 
-    features = ['CO AQI Value', 'Ozone AQI Value', 'NO2 AQI Value', 'PM2.5 AQI Value']
+    df['OrigLongitude'] = df['Longitude']
+    df['OrigLatitude'] = df['Latitude']
+
+    features = ['CO AQI Value', 'Ozone AQI Value', 'NO2 AQI Value', 'PM2.5 AQI Value', 'Longitude', 'Latitude']
     scaler = StandardScaler()
     df[features] = scaler.fit_transform(df[features])
 
     X = df[features]
-    y = df['AQI Value']  # Use numerical AQI value for regression
+    y = df['AQI Value']
 
     return df, X, y
